@@ -9,12 +9,12 @@ class WPBirthdayemails_Cron {
 	 * Add hook and run cron send mail.
 	 */
 	public function __construct() {
-		$timestamp = wp_next_scheduled( 'wpbirthdayemails_send' );
+		$timestamp = wp_next_scheduled( 'wpbirthdayemails_send_cron' );
 		if ( ! $timestamp ) {
-			wp_schedule_event( current_time( 'timestamp', true ) + 10, 'daily', 'wpbirthdayemails_send' );
+			wp_schedule_event( current_time( 'timestamp'), 'daily', 'wpbirthdayemails_send_cron' );
 		}
 
-		add_action( 'wpbirthdayemails_send', array( $this, 'send_mails' ) );
+		add_action( 'wpbirthdayemails_send_cron', array( $this, 'send_mails' ) );
 	}
 
 	//REPLACE ATTR CONTENT {ELEMTENT}
