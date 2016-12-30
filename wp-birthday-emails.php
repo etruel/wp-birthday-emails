@@ -19,6 +19,7 @@ require WPBIRTHDAYEMAILS_DIR . 'inc/class-wp-birthday-emails-composer.php';
 require WPBIRTHDAYEMAILS_DIR . 'inc/class-wp-birthday-emails-cron.php';
 require WPBIRTHDAYEMAILS_DIR . 'inc/class-wp-birthday-emails-user.php';
 require WPBIRTHDAYEMAILS_DIR . 'inc/class-wp-birthday-emails-list-user.php';
+require WPBIRTHDAYEMAILS_DIR . 'inc/class-wp-birthday-emails-widget.php';
 new WPBirthdayemails_Composer;
 new WPBirthdayemails_User;
 new WPBirthdayemails_List_User;
