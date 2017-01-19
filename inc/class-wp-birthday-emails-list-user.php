@@ -26,11 +26,12 @@ class WPBirthdayemails_List_User {
 	 * @return array
 	 */
 	public static function get_list_user_birthday() {
-		$today    = date( 'd/m' );
+		$today    = date_i18n( 'd/m' );
 		$users    = get_users();
 		$count    = 1;
 		$all_mails = [];
 		//loop to find user birthday today.
+		echo '<br/ ><div class="update-nag">';
 		foreach ( $users as $user ) {
 			$user_d = get_user_meta( $user->ID, 'birthday', true );
 			$ignore_email = get_user_meta($user->ID, 'birthday_email_ignore', true);
@@ -38,7 +39,7 @@ class WPBirthdayemails_List_User {
 			if ( $user_d == $today  && $ignore_email!='1') {
 				$count ++;
 				if ( $count == 2 ) {
-					echo '<h2>Usuarios que cumplen años: ' . $today . '.</h2>';
+					echo '<h3>'. __('Today\'s birthdays ', 'wp-birthday-emails' ) . $today . '.</h3>';
 				}
 				echo '<span>' . intval($count-1) . '/<b>' . esc_html( $user->display_name ) . '</b>' . '</span>: ' . esc_html( $user->user_email ) . '<br />';
 				$all_mails[] = $user->user_email;
@@ -47,6 +48,7 @@ class WPBirthdayemails_List_User {
 		if ( $count == 1 ) {
 			self::no_user_birthday();
 		}
+		echo "</div>";
 		return $all_mails;
 	}
 
@@ -54,10 +56,8 @@ class WPBirthdayemails_List_User {
 	 * This function to run if no user has birthday today.
 	 */
 	public static function no_user_birthday() { ?>
-		<br/ >
-		<div class="update-nag">
-			<?php esc_html_e( 'Hoy no hay cumpleaños!', 'wp-birthday-emails' ); ?>
-		</div>
+			<?php esc_html_e( 'There is no birthdays today!', 'wp-birthday-emails' ); ?>
+		
 		<?php
 	}
 }

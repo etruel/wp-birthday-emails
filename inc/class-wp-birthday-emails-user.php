@@ -46,24 +46,26 @@ class WPBirthdayemails_User {
 		$birthday_email_ignore = (is_object($user)) ? get_user_meta($user->ID,'birthday_email_ignore', true ) : false;
 		$birthday = (is_object($user)) ? get_user_meta($user->ID,'birthday', true ) : '';
 		?>
-		<h3><?php esc_html_e( 'Birthday', 'wp-birthday-emails' ) ?></h3>
-		<table class="form-table">
+		<tr>
+				<th><h3><?php esc_html_e( 'Birthday', 'wp-birthday-emails' ) ?></h3></th>
+				<td></td>
+		</tr>
+		<?php /*<table class="form-table">*/ ?>
 			<tr>
-				<th><label for="birthday_email_ignore"><?php esc_html_e( 'Ignorar Email de cumpleaños', 'wp-birthday-emails' ) ?></label></th>
+				<th><label for="birthday_email_ignore"><?php esc_html_e( 'Ignore Birthday email', 'wp-birthday-emails' ); ?></label></th>
 				<td>
-					<input type="checkbox" <?php checked( $birthday_email_ignore,true, true ); ?>  value="1" name="birthday_email_ignore" id="birthday_email_ignore"><label>
-						<strong> Marque para NO enviar el Email de cumpleaños.</strong></label>
+					<label><input type="checkbox" <?php checked( $birthday_email_ignore,true, true ); ?>  value="1" name="birthday_email_ignore" id="birthday_email_ignore">
+					 <?php esc_html_e( 'Check this field to don\'t send the email in the birthday date.', 'wp-birthday-emails' ) ?></label>
 				</td>
 			</tr>
 			<tr>
-				<th><label for="birthday"><?php esc_html_e( 'Cumpleaños', 'wp-birthday-emails' ) ?></label></th>
+				<th><label for="birthday"><?php esc_html_e( 'Birthday', 'wp-birthday-emails' ) ?></label></th>
 				<td>
 					<input type="text" name="birthday" id="birthday" value="<?php echo esc_attr( $birthday ); ?>" class="regular-text"/><br/>
-                    <span class="description"> <?php esc_html_e( 'Por favor ingrese su fecha de cumpleaños. Formato', 'wp-birthday-emails' ) ?> <code>DD / MM / YYYY </code>.</span>
+                    <span class="description"> <?php esc_html_e( 'Please enter your birthday.', 'wp-birthday-emails' ) ?> <?php _e( 'Format', 'wp-birthday-emails' ) ?> <code>DD / MM / YYYY </code>.</span>
 				</td>
 			</tr>
-
-		</table>
+		<?php /*</table>*/ ?>
 		<?php
 	}
 
