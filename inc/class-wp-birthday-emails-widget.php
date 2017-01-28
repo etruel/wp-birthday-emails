@@ -75,7 +75,7 @@ public static function get_list_user_birthday() {
       }
     }
     if ( $count == 1 ) {
-      echo '<h4><span style="position:relative; margin-top:5px;" class="dashicons dashicons-dismiss"></span> No hay Cumple-Añeros</h4>';
+      echo '<h4><span style="position:relative; margin-top:5px;" class="dashicons dashicons-dismiss"></span>' . esc_html__( 'There is no birthdays today!', 'wp-birthday-emails' ) . '</h4>';
     }
     
   }

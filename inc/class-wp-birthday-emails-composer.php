@@ -69,7 +69,7 @@ class WPBirthdayemails_Composer {
 							},
 							function( result ) {
 								if(result.indexOf('enviado')>-1){
-									$("#send_email_div").text("MENSAJE ENVIADO").delay(1000).fadeOut(1000);
+									$("#send_email_div").text("<?php _e('Test email Sent.', 'wp-birthday-emails' ); ?>").delay(1000).fadeOut(1000);
 								}
 						});
 				}
@@ -98,10 +98,11 @@ class WPBirthdayemails_Composer {
 				submit_button();
 
 				?>
-				<input type="text" id="email_pr" name="email_pr" placeholder="Email de prueba">
-				 <input type="button"  name="send_p" id="send_p" class="button button-primary" value="Probar Correo">
-				<span style="display:none; margin-left: 10px; font-size: 16px; color:black; font-weight: bold;" id="send_email_div">ENVIANDO MENSAJE..</span>
 
+				<input type="text" id="email_pr" name="email_pr" placeholder="Email de prueba">
+				 <input type="button"  name="send_p" id="send_p" class="button button-primary" value="<?php _e('Test email', 'wp-birthday-emails' ); ?>">
+				
+				<span style="display:none; margin-left: 10px; font-size: 16px; color:black; font-weight: bold;" id="send_email_div"><?php _e('Sending email...', 'wp-birthday-emails' ); ?></span>
 			</form>
 		</div>
 		<?php
@@ -115,14 +116,14 @@ class WPBirthdayemails_Composer {
 
 		add_settings_section(
 			'general',
-			esc_html__( 'Componer emails a enviar', 'wp-birthday-emails' ),
+			esc_html__( 'Email template to send to every user in his birthday', 'wp-birthday-emails' ),
 			'',
 			'wp-birthday-emails-composer'
 		);
 
 		add_settings_field(
 			'title',
-			esc_html__( 'Titulo', 'wp-birthday-emails' ),
+			esc_html__( 'Subject', 'wp-birthday-emails' ),
 			array( $this, 'render_title' ),
 			'wp-birthday-emails-composer',
 			'general'
@@ -130,7 +131,7 @@ class WPBirthdayemails_Composer {
 
 		add_settings_field(
 			'content',
-			esc_html__( 'Contenido', 'wp-birthday-emails' ),
+			esc_html__( 'Content', 'wp-birthday-emails' ),
 			array( $this, 'render_content' ),
 			'wp-birthday-emails-composer',
 			'general'
@@ -156,11 +157,15 @@ class WPBirthdayemails_Composer {
 	public function render_content() {
 		$option  = get_option( 'wp-birthday-emails' );
 		$content = isset( $option['content'] ) ? $option['content'] : '';
+
 		if(empty($content)){
 			$content = $this::default_menssage();
 		}
-		wp_editor( $content, 'wpbirthdayemails_content', array('textarea_name' => 'wp-birthday-emails[content]',));
-		echo '<br><strong>Etiquetas permitidas:</strong><br>';
+	
+		wp_editor( $content, 'wpbirthdayemails_content', array(
+			'textarea_name' => 'wp-birthday-emails[content]',
+		));
+		echo '<br><strong>'.__('Allowed tags to be replaced.', 'wp-birthday-emails' ).':</strong><br>';
 		echo '<p id="emailtags"><span>{first_name}</span>  <span>{last_name}</span>  <span>{nickname}</span>  <span>{user_email}</span>  <span>{user_birth}</span></p>';
 
 	}

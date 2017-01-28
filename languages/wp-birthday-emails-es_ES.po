@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Birthday emails\n"
-"POT-Creation-Date: 2017-01-18 23:44-0300\n"
-"PO-Revision-Date: 2017-01-18 23:45-0300\n"
+"POT-Creation-Date: 2017-01-18 23:12-0300\n"
+"PO-Revision-Date: 2017-01-18 23:25-0300\n"
 "Last-Translator: Esteban <esteban@netmdp.com>\n"
 "Language-Team: FitWP <esteban@netmdp.com>\n"
-"Language: en\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,74 +24,73 @@ msgstr ""
 
 #: inc/class-wp-birthday-emails-composer.php:23
 msgid "Birthday Emails Compose"
-msgstr ""
+msgstr "Birthday Emails Compose"
 
 #: inc/class-wp-birthday-emails-composer.php:24
 msgid "Birthday Emails"
-msgstr ""
+msgstr "Birthday Emails"
 
 #: inc/class-wp-birthday-emails-composer.php:72
 msgid "Test email Sent."
-msgstr ""
+msgstr "Email de prueba enviado."
 
 #: inc/class-wp-birthday-emails-composer.php:101
 msgid "Test email"
-msgstr ""
+msgstr "Probar email"
 
 #: inc/class-wp-birthday-emails-composer.php:102
 msgid "Sending email..."
-msgstr ""
+msgstr "Enviando email..."
 
 #: inc/class-wp-birthday-emails-composer.php:117
 msgid "Email template to send to every user in his birthday"
-msgstr ""
+msgstr "Plantilla del email a enviar a los cumpleañeros en su día"
 
 #: inc/class-wp-birthday-emails-composer.php:124
 msgid "Subject"
-msgstr ""
+msgstr "Asunto"
 
 #: inc/class-wp-birthday-emails-composer.php:132
 msgid "Content"
-msgstr ""
+msgstr "Contenido"
 
 #: inc/class-wp-birthday-emails-composer.php:157
 msgid "Allowed tags to be replaced."
-msgstr ""
+msgstr "Etiquetas permitidas"
 
 #: inc/class-wp-birthday-emails-list-user.php:42
 msgid "Today's birthdays "
-msgstr ""
+msgstr "Cumpleaños de Hoy"
 
 #: inc/class-wp-birthday-emails-list-user.php:59
-#: inc/class-wp-birthday-emails-widget.php:78
 msgid "There is no birthdays today!"
-msgstr ""
+msgstr "No hay Cumpleaños Hoy!"
 
 #: inc/class-wp-birthday-emails-user.php:50
 #: inc/class-wp-birthday-emails-user.php:62
 msgid "Birthday"
-msgstr ""
+msgstr "Cumpleaños"
 
 #: inc/class-wp-birthday-emails-user.php:55
 msgid "Ignore Birthday email"
-msgstr ""
+msgstr "Ignorar email de cumpleaños"
 
 #: inc/class-wp-birthday-emails-user.php:58
 msgid "Check this field to don't send the email in the birthday date."
-msgstr ""
+msgstr "Marque esta opción para NO enviar el email en su cumpleaños."
 
 #: inc/class-wp-birthday-emails-user.php:65
 msgid "Please enter your birthday."
-msgstr ""
+msgstr "Ingrese la fecha de cumpleaños."
 
 #: inc/class-wp-birthday-emails-user.php:65
 msgid "Format"
-msgstr ""
+msgstr "Formato"
 
 #: inc/class-wp-birthday-emails-widget.php:8
 msgid "Birthdays list"
-msgstr ""
+msgstr "Lista de Cumpleaños"
 
 #: inc/class-wp-birthday-emails-widget.php:9
 msgid "Happy birthday list"
-msgstr ""
+msgstr "Lista de Cumpleañeros"

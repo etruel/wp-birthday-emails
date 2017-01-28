@@ -2,8 +2,8 @@
 Contributors: etruel, albertdesinger
 Tags: email, emails, newsletter, ecard
 Requires at least: 4.3
-Tested up to: 4.7
-Stable tag: 1.0.0
+Tested up to: 4.8
+Stable tag: 1.1
 License: GPLv2 or later
 
 WP Birthday emails is a plugin that add a birthday field to users and automatically sends a happy birthday email to each user on his birthdays.
@@ -35,6 +35,13 @@ To compose the email, please go to **WP Birthday emails** menu.
 == Screenshots ==
 
 == Changelog ==
+
+= 1.1 =
+* Added a mayor class to load the plugin.
+* Changed all text to english.
+* Added language file.
+* Added Spanish.
+* Fixes GMT time to check dates birthdays.
 
 = 1.0.0 =
 * Initial release
