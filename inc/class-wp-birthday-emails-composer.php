@@ -33,15 +33,16 @@ class WPBirthdayemails_Composer {
 	//funcion ajax para probar
 	public static function email_send_p_callback(){
 		check_ajax_referer('email_send_ajax' );
-		//$option  = get_option( 'wp-birthday-emails');
 		$content_temp = '';
 		$option_user = wp_get_current_user();
 		$subject = isset( $option['title'] ) ? $option['title'] : '';
 		$content = isset( $option['content'] ) ? $option['content'] : '';
 		//email del usuario en sesion
 		$email  = $option_user->user_email;
+
 		$content_temp =WPBirthdayemails_Cron::replace_content($content,$email);
-		wp_mail( $emails[$i], $subject, $content_temp, array( 'Content-Type: text/html; charset=UTF-8' ) );
+		
+		wp_mail($_POST['data']['email_pr'], $subject, $content_temp, array( 'Content-Type: text/html; charset=UTF-8' ) );
 		sleep(2);	
 		echo 'enviado';
 	}
