@@ -33,17 +33,16 @@ class WPBirthdayemails_Composer {
 	//funcion ajax para probar
 	public static function email_send_p_callback(){
 		check_ajax_referer('email_send_ajax' );
-		$option  = get_option( 'wp-birthday-emails');
+		//$option  = get_option( 'wp-birthday-emails');
 		$content_temp = '';
-		//data mail
+		$option_user = wp_get_current_user();
 		$subject = isset( $option['title'] ) ? $option['title'] : '';
 		$content = isset( $option['content'] ) ? $option['content'] : '';
-		$emails  = WPBirthdayemails_List_User::get_list_user_birthday();
-		for($i=0; $i<count($emails);$i++){
-			$content_temp =WPBirthdayemails_Cron::replace_content($content,$emails[$i]);
-			wp_mail( $emails[$i], $subject, $content_temp, array( 'Content-Type: text/html; charset=UTF-8' ) );
-			sleep(2);	
-		}
+		//email del usuario en sesion
+		$email  = $option_user->user_email;
+		$content_temp =WPBirthdayemails_Cron::replace_content($content,$email);
+		wp_mail( $emails[$i], $subject, $content_temp, array( 'Content-Type: text/html; charset=UTF-8' ) );
+		sleep(2);	
 		echo 'enviado';
 	}
 
@@ -58,7 +57,8 @@ class WPBirthdayemails_Composer {
 				//creando la funcion ajax
 				function ajax_post(){
 					var data = {
-						titulo : 'efecto ajax'
+						titulo : 'efecto ajax',
+						email_pr : $("#email_pr").val()
 					}
 					$.post( 
 							"<?php echo admin_url( 'admin-ajax.php' ); ?>", 
@@ -98,6 +98,7 @@ class WPBirthdayemails_Composer {
 				submit_button();
 
 				?>
+				<input type="text" id="email_pr" name="email_pr" placeholder="Email de prueba">
 				 <input type="button"  name="send_p" id="send_p" class="button button-primary" value="Probar Correo">
 				<span style="display:none; margin-left: 10px; font-size: 16px; color:black; font-weight: bold;" id="send_email_div">ENVIANDO MENSAJE..</span>
 
@@ -145,15 +146,20 @@ class WPBirthdayemails_Composer {
 		echo '<input name="wp-birthday-emails[title]" type="text" class="widefat" value="' . esc_attr( $title ) . '">';
 	}
 
+	public function default_menssage(){
+		return 'Hola {first_name} Ante todo te quiero desear un feliz cumpleaños <br> puedes entrar a nuestra web con tu correo electronico {user_email} o tu usuario {nickname} para estar al tanto de nuestras actualizaciones';
+	}
+
 	/**
 	 * Output field content.
 	 */
 	public function render_content() {
 		$option  = get_option( 'wp-birthday-emails' );
 		$content = isset( $option['content'] ) ? $option['content'] : '';
-		wp_editor( $content, 'wpbirthdayemails_content', array(
-			'textarea_name' => 'wp-birthday-emails[content]',
-		));
+		if(empty($content)){
+			$content = $this::default_menssage();
+		}
+		wp_editor( $content, 'wpbirthdayemails_content', array('textarea_name' => 'wp-birthday-emails[content]',));
 		echo '<br><strong>Etiquetas permitidas:</strong><br>';
 		echo '<p id="emailtags"><span>{first_name}</span>  <span>{last_name}</span>  <span>{nickname}</span>  <span>{user_email}</span>  <span>{user_birth}</span></p>';
 
