@@ -29,19 +29,26 @@ class WPBirthdayemails_Composer {
 		);
 	}
 
+	public function default_menssage(){
+		return 'Hola {first_name} Ante todo te quiero desear un feliz cumpleaños <br> puedes entrar a nuestra web con tu correo electronico {user_email} o tu usuario {nickname} para estar al tanto de nuestras actualizaciones';
+	}
+
 
 	//funcion ajax para probar
 	public static function email_send_p_callback(){
 		check_ajax_referer('email_send_ajax' );
 		$option  = get_option( 'wp-birthday-emails');
-		
+
 		$content_temp = '';
 		$option_user = wp_get_current_user();
 		$subject = isset( $option['title'] ) ? $option['title'] : '';
 		$content = isset( $option['content'] ) ? $option['content'] : '';
+
 		//email del usuario en sesion
 		$email  = $option_user->user_email;
-
+		if(empty($content)){
+			$content = self::default_menssage();
+		}
 		$content_temp = WPBirthdayemails_Cron::replace_content($content,$email);
 		
 		wp_mail($_POST['data']['email_pr'], $subject, $content_temp, array( 'Content-Type: text/html; charset=UTF-8' ) );
@@ -150,9 +157,7 @@ class WPBirthdayemails_Composer {
 		echo '<input name="wp-birthday-emails[title]" type="text" class="widefat" value="' . esc_attr( $title ) . '">';
 	}
 
-	public function default_menssage(){
-		return 'Hola {first_name} Ante todo te quiero desear un feliz cumpleaños <br> puedes entrar a nuestra web con tu correo electronico {user_email} o tu usuario {nickname} para estar al tanto de nuestras actualizaciones';
-	}
+	
 
 	/**
 	 * Output field content.
